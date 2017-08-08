@@ -670,3 +670,70 @@ TreeNode* Function::createTreeNode(vector<int>& nums, int left, int right)
 	node->right = createTreeNode(nums, mid + 1, right);
 	return node;
 }
+
+bool Function::isBalanced(TreeNode* root)
+{
+	int depth = 0;
+	return isBalancedTree(root, INT_MIN, INT_MAX, depth);
+}
+
+bool Function::isBalancedTree(TreeNode* root, int minValue, int maxValue, int& depth)
+{
+	if (root == NULL)
+	{
+		return true;
+	}
+	depth++;
+	int dl = 0, dr = 0;
+	if (!isBalancedTree(root->left, minValue, root->val, dl))
+	{
+		return false;
+	}
+	if (!isBalancedTree(root->right, root->val, maxValue, dr))
+	{
+		return false;
+	}
+	if (abs(dl-dr) > 1)
+	{
+		return false;
+	}
+	else
+	{
+		depth += max(dl, dr);;
+	}
+	return true;
+}
+
+int Function::minDepth(TreeNode* root)
+{
+	if (root == NULL)
+	{
+		return 0;
+	}
+	if (root->left == NULL)
+	{
+		return 1 + minDepth(root->right);
+	}
+	if (root->right == NULL)
+	{
+		return 1 + minDepth(root->left);
+	}
+	return 1 + min(minDepth(root->left), minDepth(root->right));
+}
+
+bool Function::hasPathSum(TreeNode* root, int sum)
+{
+	if (root == NULL)
+	{
+		return false;
+	}
+	if (root->left == NULL && root->right == NULL && sum == root->val)
+	{
+		return true;
+	}
+	if (hasPathSum(root->left, sum - root->val) || hasPathSum(root->right, sum - root->val))
+	{
+		return true;
+	}
+	return false;
+}

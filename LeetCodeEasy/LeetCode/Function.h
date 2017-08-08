@@ -98,5 +98,12 @@ public:
 */
 	static TreeNode* sortedArrayToBST(vector<int>& nums);	// <108> 把一个有序数组转换为一个平衡二叉树, 使用递归
 	static TreeNode* createTreeNode(vector<int>& nums, int left, int right);
+
+	static bool isBalanced(TreeNode* root);	// <110> 判断一个二叉树是否是平衡二叉树
+	static bool isBalancedTree(TreeNode* root, int minValue, int maxValue, int& depth);
+
+	static int minDepth(TreeNode* root);	// <111> 求二叉树的最小深度，要注意在左节点为空时，以右节点为准，右节点为空时，以左节点为准
+
+	static bool hasPathSum(TreeNode* root, int sum);	// <112> 判断二叉树是否存在从头到尾的一条路径，使得所有值得和为sum
 };
 
