@@ -6,11 +6,11 @@
 
 using namespace std;
 
-struct ListNode1 
+struct ListNode 
 {
 	int val;
-	ListNode1 *next;
-	ListNode1(int x) : val(x), next(NULL) {}
+	ListNode *next;
+	ListNode(int x) : val(x), next(NULL) {}
 };
 
 struct TreeNode
@@ -41,7 +41,7 @@ public:
 
 	static bool isValid(string s);	// <20> 判断字符串是否符合()、{}、[]的规则
 
-	ListNode1* mergeTwoLists(ListNode1* l1, ListNode1* l2);	// <21> 按照大小顺序融合两个链表
+	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2);	// <21> 按照大小顺序融合两个链表
 
 	static int removeDuplicates(vector<int>& nums);	// <26> 删除数组中重复的元素，并返回长度		***这题输入的数组是有序的，所以解答中不需要用到双循环，用双循环会超时
 
@@ -78,7 +78,7 @@ public:
 
 	static int climbStairs(int n);	// <70> 爬梯子，使用斐波那契数列，stair(n) = stair(n-1) + stair(n-2)
 	
-	static ListNode1* deleteDuplicates(ListNode1* head);	// <83> 删除链表中重复的节点
+	static ListNode* deleteDuplicates(ListNode* head);	// <83> 删除链表中重复的节点
 
 	static void merge(vector<int>&nums1, int m, vector<int>&nums2, int n);	// <88> 合并两个有序整型数组，合并到num1中，空间足够大
 
@@ -105,5 +105,24 @@ public:
 	static int minDepth(TreeNode* root);	// <111> 求二叉树的最小深度，要注意在左节点为空时，以右节点为准，右节点为空时，以左节点为准
 
 	static bool hasPathSum(TreeNode* root, int sum);	// <112> 判断二叉树是否存在从头到尾的一条路径，使得所有值得和为sum
+
+	static vector<vector<int>> generatePascalTriangle(int numRows);	// <118> 输出杨辉三角的数组，numRows为行数
+
+	static vector<int> getRwoPascalTriangle(int rowIndex);	// <119> 返回杨辉三角的某一行数组
+
+	static int getMaxProfix(vector<int>& prices);	// <121> 输入股票每天的价格数组，最多买卖一次，返回最大收入
+
+	static int getMaxProfix2(vector<int>& prices);	// <122> 输入股票每天的价格数组，买卖次数不限，返回最大收入
+
+	static bool isPalindrome(string s);	// <125> 判断一个字符串是否是回文，若遇到非数字或字符则跳过，“A man,a plan,a canal:Panama”为true
+
+	static int singleNumber(vector<int>& nums);	// <136> 输入一个数组，每个元素都出现两次，除了一个，找出那个元素，要求不使用多余的空间(考虑使用异或)
+
+	static bool listHasCycle(ListNode* head);	// <141> 判断一个链表是否存在回路，要求不使用多余的空间（若存在回路，则快指针一定能追上慢指针）
+
+	// <155> 新建类MinStack，进行push pop等操作
+
+
+
 };
 

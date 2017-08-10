@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "Function.h"
+#include "MinStack.h"
 #include <iostream>
 #include <Windows.h>
 #include <string>

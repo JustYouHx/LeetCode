@@ -197,10 +197,10 @@ bool Function::isValid(string s)
 		return false;
 }
 
-ListNode1* Function::mergeTwoLists(ListNode1* l1, ListNode1* l2)
+ListNode* Function::mergeTwoLists(ListNode* l1, ListNode* l2)
 {
-	ListNode1* head;
-	ListNode1* p;
+	ListNode* head;
+	ListNode* p;
 	if (l1 == NULL)
 		return l2;
 	if (l2 == NULL)
@@ -509,14 +509,14 @@ int Function::climbStairs(int n)
 	return n2;
 }
 
-ListNode1* Function::deleteDuplicates(ListNode1* head)
+ListNode* Function::deleteDuplicates(ListNode* head)
 {
 	if (head == NULL || head->next == NULL)
 	{
 		return head;
 	}
-	ListNode1* p1 = head;
-	ListNode1* p2 = head->next;
+	ListNode* p1 = head;
+	ListNode* p2 = head->next;
 	while (p2 != NULL)
 	{
 		if (p1->val == p2->val)
@@ -734,6 +734,155 @@ bool Function::hasPathSum(TreeNode* root, int sum)
 	if (hasPathSum(root->left, sum - root->val) || hasPathSum(root->right, sum - root->val))
 	{
 		return true;
+	}
+	return false;
+}
+
+vector<vector<int>> Function::generatePascalTriangle(int numRows)
+{
+	vector<vector<int>> vecc;
+	vector<int> vec;
+	if (numRows == 0)
+	{
+		return vecc;
+	}
+	vec.push_back(1);
+	vecc.push_back(vec);
+	if (numRows == 1)
+	{
+		return vecc;
+	}
+	for (int i = 1; i < numRows; i++)
+	{
+		vector<int> tmp;
+		tmp.push_back(1);
+		for (int j = 1; j < i; j++)
+		{
+			tmp.push_back(vec[j-1] + vec[j]);
+		}
+		tmp.push_back(1);
+		vecc.push_back(tmp);
+		vec = tmp;
+	}
+	return vecc;
+}
+
+vector<int> Function::getRwoPascalTriangle(int rowIndex)
+{
+	int a = 1, b = 1;
+	vector<int> vec;
+	vec.push_back(1);
+	if (rowIndex == 0)
+	{
+		return vec;
+	}
+	vec.push_back(1);
+	if (rowIndex == 1)
+	{
+		return vec;
+	}
+	for (int i = 2; i <= rowIndex; i++)
+	{
+		for (int j = 1; j < i; j++)
+		{
+			a = b;
+			b = vec[j];
+			vec[j] = a + b;
+		}
+		vec.push_back(1);
+	}
+	return vec;
+}
+
+int Function::getMaxProfix(vector<int>& prices)
+{
+	if (prices.size() == 0)
+	{
+		return 0;
+	}
+	int min = prices[0], profit = 0;
+	for (int i = 0; i < prices.size(); i++)
+	{
+		if (prices[i] < min)
+		{
+			min = prices[i];
+		}
+		if (prices[i] - min > profit)
+		{
+			profit = prices[i] - min;
+		}
+	}
+	return profit;
+}
+
+int Function::getMaxProfix2(vector<int>& prices)
+{
+	int profit = 0;
+	for (int i = 1; i < prices.size(); i++)
+	{
+		if (prices[i] > prices[i-1])
+		{
+			profit = profit + prices[i] - prices[i-1];
+		}
+	}
+	return profit;
+}
+
+bool Function::isPalindrome(string s)
+{
+	int start = 0;
+	int stop = s.length()-1;
+	while (start <= stop)
+	{
+		if (!isalnum(s.at(start)))
+		{
+			start++;
+			continue;
+		}
+		if (!isalnum(s.at(stop)))
+		{
+			stop--;
+			continue;
+		}
+		if (tolower(s.at(start)) == tolower(s.at(stop)))
+		{
+			start++;
+			stop--;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+int Function::singleNumber(vector<int>& nums)
+{
+	int single = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		single = single ^ nums[i];
+	}
+	return single;
+}
+
+bool Function::listHasCycle(ListNode* head)
+{
+	if (head == NULL)
+	{
+		return false;
+	}
+	ListNode* slow = head;
+	ListNode* fast = head->next;
+	while (fast != NULL && fast->next != NULL)
+	{
+		if (slow == fast)
+		{
+			return true;
+		}
+		fast = fast->next->next;
+		slow = slow->next;
 	}
 	return false;
 }
