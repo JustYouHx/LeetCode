@@ -886,3 +886,291 @@ bool Function::listHasCycle(ListNode* head)
 	}
 	return false;
 }
+
+ListNode* Function::getInterSectionNode(ListNode* headA, ListNode* headB)
+{
+	ListNode* pa = headA;
+	ListNode* pb = headB;
+	if (pa == NULL || pb == NULL)
+	{
+		return NULL;
+	}
+	while (pa != NULL && pb != NULL && pa != pb)
+	{
+		pa = pa->next;
+		pb = pb->next;
+		if (pa == pb)
+		{
+			return pa;
+		}
+		if (pa == NULL)
+		{
+			pa = headB;
+		}
+		if (pb == NULL)
+		{
+			pb = headA;
+		}
+	}
+	return pa;
+}
+
+vector<int> Function::twoSum(vector<int>& numbers, int target)
+{
+	vector<int> index;
+	if (numbers.size() < 2)
+	{
+		return index;
+	}
+	int min = 0;
+	int max = numbers.size()-1;
+	while (min < max)
+	{
+		if (numbers[min] + numbers[max] == target)
+		{
+			index.push_back(min+1);
+			index.push_back(max+1);
+			return index;
+		}
+		else if (numbers[min] + numbers[max] > target)
+		{
+			max--;
+		}
+		else if (numbers[min] + numbers[max] < target)
+		{
+			min++;
+		}
+	}
+	return index;
+}
+
+string Function::convertToTitle(int n)
+{
+	string s = "";
+	while (n > 0)
+	{
+		s.insert(0, 1, char('A' + (n-1) % 26));
+		n = (n-1) / 26;
+	}
+	return s;
+}
+
+int Function::majorityElement(vector<int>& nums)
+{
+	map<int, int> tmpMap;
+	map<int, int>::iterator it;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		it = tmpMap.find(nums[i]);
+		if (it == tmpMap.end())
+		{
+			tmpMap[nums[i]] = 1;
+		}
+		else
+		{
+			tmpMap[nums[i]]++;
+		}
+		if (tmpMap[nums[i]] > nums.size() / 2)
+		{
+			return nums[i];
+		}
+	}
+	return 0;
+}
+
+int Function::titleToNumber(string s)
+{
+	int n = 0;
+	int k = 1;
+	for (int i = s.length() - 1; i >= 0; i--)
+	{
+		n = n + int(s.at(i) - 'A' + 1) * k;
+		k *= 26;
+	}
+	return n;
+}
+
+int Function::trailingZeroes(int n)
+{
+	int nums = 0;
+	long long k = 5;
+	//int k = 5;
+	while ( n / k > 0)
+	{
+		nums += n/k;
+		k *= 5;
+	}
+	return nums;
+}
+
+void Function::rotateArray(vector<int>& nums, int k)
+{
+	int n = nums.size();
+	int tmpK = k % n;
+	int tmp1, tmp2;
+	while (tmpK > 0)
+	{
+		tmp1 = nums[0];
+		for (int i = 0; i < n; i++)
+		{
+			if (i == n-1)
+			{
+				tmp2 = nums[0];
+				nums[0] = tmp1;
+			}
+			else
+			{
+				tmp2 = nums[i+1];
+				nums[i+1] = tmp1;
+			}
+			tmp1 = tmp2;
+		}
+		tmpK--;
+	}
+}
+
+uint32_t Function::reverseBits(uint32_t n)
+{
+	uint32_t value = 0;
+	uint32_t k = 1;
+	for (int i = 0; i < 32; i++)
+	{
+		value = (value << 1) | ((n & k) >> i);
+		k = k << 1;
+	}
+	return value;
+}
+
+int Function::hammingWeight(uint32_t n)
+{
+	int count = 0;
+	uint32_t k = 1;
+	for (int i = 0; i < 32; i++)
+	{
+		if ((n & k) >> i == 1)
+		{
+			count++;
+		}
+		k = k << 1;
+	}
+	return count;
+}
+
+int Function::robMax(vector<int>& nums)
+{
+	int value = 0;
+	int n = nums.size();
+	if (n == 0)
+	{
+		return 0;
+	}
+	else if (n == 1)
+	{
+		return nums[0];
+	}
+	else if (n == 2)
+	{
+		return max(nums[0], nums[1]);
+	}
+	vector<int> k;
+	k.push_back(nums[0]);
+	k.push_back(max(nums[0], nums[1]));
+	for (int i = 2; i < n; i++)
+	{
+		k.push_back(max(k[i-2] + nums[i], k[i-1]));
+	}
+	return k[k.size()-1];
+}
+
+bool Function::isHappyNum(int n)
+{
+	set<int> tmpSet;
+	set<int>::iterator it;
+	int tmp;
+	tmpSet.insert(n);
+	while (1)
+	{
+		tmp = 0;
+		while (n > 0)
+		{
+			tmp += (n % 10) * (n % 10);
+			n /= 10;
+		}
+		it = tmpSet.find(tmp);
+		if (tmp == 1)
+		{
+			return true;
+		}
+		else if (it != tmpSet.end())
+		{
+			return false;
+		}
+		else 
+		{
+			tmpSet.insert(tmp);
+			n = tmp;
+		}
+	}
+	return n==1;
+}
+
+ListNode* Function::removeListElement(ListNode* head, int val)
+{
+	if (head == NULL)
+	{
+		return head;
+	}
+	ListNode* p = head;
+	ListNode* q = head;
+	while (head != NULL)
+	{
+		if (head->val == val)
+		{
+			head = head->next;
+		}
+		else
+		{
+			p = head;
+			q = head->next;
+			break;
+		}
+	}
+	while (q != NULL)
+	{
+		if (q->val == val)
+		{
+			p->next = q->next;
+			q = q->next;
+		}
+		else
+		{
+			p = q;
+			q = q->next;
+		}
+	}
+	return head;
+}
+
+int Function::countPrimes(int n)
+{
+	int count = 0;
+	vector<int> vec;
+	for (int i = 2; i < n; i++)
+	{
+		bool isPrimes = true;
+		for (int j = 0; j < vec.size() && vec[j]*vec[j] <= i; j++)
+		{
+			if (i % vec[j] == 0)
+			{
+				isPrimes = false;
+				break;
+			}
+		}
+		if (isPrimes)
+		{
+			vec.push_back(i);
+			count++;
+		}
+	}
+	return count;
+}

@@ -1,8 +1,11 @@
 #pragma once
 
+#include <stdint.h>
 #include <string>
 #include <vector>
 #include <queue>
+#include <map>
+#include <set>
 
 using namespace std;
 
@@ -92,9 +95,9 @@ public:
 	static vector<vector<int>> levelOrderBottom(TreeNode* root);	// <107> 获取二叉树从底到根节点的数组, 使用队列queue，逐层遍历
 
 /**
-*若任意节点的左子树不空，则左子树上所有结点的值均小于它的根结点的值
-*若任意节点的右子树不空，则右子树上所有结点的值均大于它的根结点的值
-*它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树
+* 若任意节点的左子树不空，则左子树上所有结点的值均小于它的根结点的值
+* 若任意节点的右子树不空，则右子树上所有结点的值均大于它的根结点的值
+* 它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树
 */
 	static TreeNode* sortedArrayToBST(vector<int>& nums);	// <108> 把一个有序数组转换为一个平衡二叉树, 使用递归
 	static TreeNode* createTreeNode(vector<int>& nums, int left, int right);
@@ -122,7 +125,35 @@ public:
 
 	// <155> 新建类MinStack，进行push pop等操作
 
+	static ListNode* getInterSectionNode(ListNode* headA, ListNode* headB);	// <160> 两个链表相交于某节点，这个节点之后的所有节点都是共有的
 
+	static vector<int> twoSum(vector<int>& numbers, int target);	// <167> 获取数组中和为target的两个元素的index，比如[2,3,4]，target为6，输入[1,3]
 
+	static string convertToTitle(int n);	// <168> 获取excel表格的行标题，1对应A、26对应Z、27对应AA、28对应AB...
+	
+	static int majorityElement(vector<int>& nums);	// <169> 获取数组中出现次数超过n/2的数，假设这个数一定存在
+
+	static int titleToNumber(string s);	// <171> excel表格行标题表示的列数，A对应1、AA对应27等等
+
+	static int trailingZeroes(int n);	// <172> 求n!阶乘，结尾的0的个数，要求时间复杂度小于logn...阶乘里有多少5结尾就有多少0，nums = n/5 + n/25 + n/125 + ...
+
+	static void rotateArray(vector<int>& nums, int k);	// <189> 把数组所有元素向右移动k步，循环移动
+
+	static uint32_t reverseBits(uint32_t n);	// <190> 把无符号整型转换成二进制然后reverse，返回无符号整型，使用移位
+
+	static int hammingWeight(uint32_t n);	// <191> 返回无符号整型的二进制数中‘1’的个数
+
+	static int robMax(vector<int>& nums);	// <198> 返回数组中不相邻元素和的最大值，动态规划，k[i]=max(k[i-2]+nums[i],k[i-1])
+
+/** 19 is a happy number
+* 1平方 + 9平方 = 82
+* 8平方 + 2平方 = 68
+* 6平方 + 8平方 = 100
+* 1平方 + 0平方 + 0平方 = 1
+*/
+	static bool isHappyNum(int n);	// <202> 判断一个数是否是happy数，用到set集合
+
+	static ListNode* removeListElement(ListNode* head, int val);	// <203> 删除链表中与val相同的元素，要注意head开头几个元素不要等于val
+
+	static int countPrimes(int n);	// <204> 计算小于n的素数的个数，判断x是否是素数，只需判断能否被小于sqrt(x)的所有素数整除
 };
-

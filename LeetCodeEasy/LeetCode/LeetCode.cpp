@@ -26,10 +26,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	strs.push_back(0);
 	strs.push_back(0);
 	strs2.push_back(1);
-	strs2.push_back(5);
+	strs2.push_back(8);
 	strs2.push_back(6);
 
-	int i = 5;
+	int i = 19;
 
 	string s1 = "0";
 	string s2 = "1";
@@ -47,16 +47,23 @@ int _tmain(int argc, _TCHAR* argv[])
 //	string r = Function::addBinary(s1, s2);
 //	int r = Function::mySqrt(i);
 //	int r = Function::climbStairs(i);
-	Function::merge(strs, 4, strs2, 3);
+//	Function::merge(strs, 4, strs2, 3);
+//	string r = Function::convertToTitle(i);
+//	int r = Function::titleToNumber(x);
+//	int r = Function::trailingZeroes(i);
+//	Function::rotateArray(strs2, i);
+//	int r = Function::robMax(strs2);
+//	bool r = Function::isHappyNum(i);
+	int r = Function::countPrimes(i);
 
-//	cout << "\n结果：" << r << endl;
-	cout << strs[0] << endl;
-	cout << strs[1] << endl;
-	cout << strs[2] << endl;
-	cout << strs[3] << endl;
-	cout << strs[4] << endl;
-	cout << strs[5] << endl;
-	cout << strs[6] << endl;
+	cout << "\n结果：" << r << endl;
+//	cout << strs2[0] << endl;
+//	cout << strs2[1] << endl;
+//	cout << strs2[2] << endl;
+//	cout << strs[3] << endl;
+//	cout << strs[4] << endl;
+//	cout << strs[5] << endl;
+//	cout << strs[6] << endl;
 
 	system("pause");
 	return 0;
