@@ -1174,3 +1174,124 @@ int Function::countPrimes(int n)
 	}
 	return count;
 }
+
+bool Function::isIsomorphic(string s, string t)
+{
+	map<char, char> ms;
+	map<char, char> mt;
+	map<char, char>::iterator its;
+	map<char, char>::iterator itt;
+	for (int i = 0; i < s.length(); i++)
+	{
+		its = ms.find(s[i]);
+		itt = mt.find(t[i]);
+		if (its == ms.end() && itt == mt.end())
+		{
+			ms.insert(map<char, char>::value_type(s[i], t[i]));
+			mt.insert(map<char, char>::value_type(t[i], s[i]));
+		}
+		else if (its != ms.end() && itt != mt.end())
+		{
+			if (ms[s[i]] != t[i] || mt[t[i]] != s[i])
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+ListNode* Function::reverseList(ListNode* head)
+{
+	ListNode* p = NULL;
+	ListNode* q = NULL;
+	while (head != NULL)
+	{
+		q = head->next;
+		head->next = p;
+		p = head;
+		if (q == NULL)
+		{
+			break;
+		}
+		head = q;
+	}
+	return head;
+}
+
+bool Function::containsDuplicate(vector<int>& nums)
+{
+	set<int> tmpSet;
+	set<int>::iterator it;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		it = tmpSet.find(nums[i]);
+		if (it == tmpSet.end())
+		{
+			tmpSet.insert(nums[i]);
+		}
+		else
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Function::containsNearbyDuplicate(vector<int>& nums, int k)
+{
+	map<int, int> tmpMap;
+	map<int, int>::iterator it;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		it = tmpMap.find(nums[i]);
+		if (it != tmpMap.end())
+		{
+			if (i - tmpMap[nums[i]] <= k)
+			{
+				return true;
+			}
+			else
+			{
+				tmpMap.erase(it);
+				tmpMap.insert(map<int, int>::value_type(nums[i], i));
+			}
+		}
+		else
+		{
+			tmpMap.insert(map<int, int>::value_type(nums[i], i));
+		}
+	}
+	return false;
+}
+
+TreeNode* Function::invertTree(TreeNode* root)
+{
+	if (root == NULL)
+	{
+		return NULL;
+	}
+	invertTree(root->left);
+	invertTree(root->right);
+	TreeNode* tmp = root->left;
+	root->left = root->right;
+	root->right = tmp;
+	return root;
+}
+
+bool Function::isPowerOfTwo(int n)
+{
+	if (n == 1)
+	{
+		return true;
+	}
+	if (n > 1 && n % 2 == 0)
+	{
+		return isPowerOfTwo(n / 2);
+	}
+	return false;
+}

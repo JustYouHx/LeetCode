@@ -156,4 +156,18 @@ public:
 	static ListNode* removeListElement(ListNode* head, int val);	// <203> 删除链表中与val相同的元素，要注意head开头几个元素不要等于val
 
 	static int countPrimes(int n);	// <204> 计算小于n的素数的个数，判断x是否是素数，只需判断能否被小于sqrt(x)的所有素数整除
+
+	static bool isIsomorphic(string s, string t);	// <205> 判断两个字符串是否是同构的，假设s和t相同长度，比如abb和trr是同构
+
+	static ListNode* reverseList(ListNode* head);	// <206> 翻转一个没有回环的链表
+
+	static bool containsDuplicate(vector<int>& nums);	// <217> 判断一个数组是否有重复的元素，有则返回true
+
+	static bool containsNearbyDuplicate(vector<int>& nums, int k);	// <219> 判断在k的间隔中是否存在重复元素
+
+	// <225> 新建类MyStack，进行push pop等操作，要求使用queue操作
+
+	static TreeNode* invertTree(TreeNode* root);	// <226> 把一个二叉树左右翻转，使用递归交换每个节点的左右节点即可
+
+	static bool isPowerOfTwo(int n);	// <231> 判断一个数是否是2的n次幂，只需递归除以2即可
 };
