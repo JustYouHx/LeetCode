@@ -27,12 +27,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	strs.push_back(0);
 	strs2.push_back(1);
 	strs2.push_back(8);
-	strs2.push_back(6);
+	strs2.push_back(1);
+	strs2.push_back(1);
 
-	int i = 19;
+	int i = 14;
 
-	string s1 = "0";
-	string s2 = "1";
+	string s1 = "nadd";
+	string s2 = "andd";
 
 //	int r = Function::myReverse(x);
 //	bool r = Function::isPalindrome(x);
@@ -54,7 +55,14 @@ int _tmain(int argc, _TCHAR* argv[])
 //	Function::rotateArray(strs2, i);
 //	int r = Function::robMax(strs2);
 //	bool r = Function::isHappyNum(i);
-	int r = Function::countPrimes(i);
+//	int r = Function::countPrimes(i);
+//	bool r = Function::isIsomorphic(s1, s2);
+//	bool r = Function::containsDuplicate(strs2);
+//	bool r = Function::containsNearbyDuplicate(strs2, 1);
+//	bool r = Function::isAnagram(s1, s2);
+//	int r = Function::addDigits(i);
+//	bool r = Function::isUgly(i);
+	int r = Function::firstBadVersion(i);
 
 	cout << "\n½á¹û£º" << r << endl;
 //	cout << strs2[0] << endl;

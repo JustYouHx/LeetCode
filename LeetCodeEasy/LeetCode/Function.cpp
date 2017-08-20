@@ -1295,3 +1295,247 @@ bool Function::isPowerOfTwo(int n)
 	}
 	return false;
 }
+
+bool Function::isPalindromeList(ListNode* head)
+{
+	if (head == NULL || head->next == NULL)
+	{
+		return true;
+	}
+	ListNode* slow = head;
+	ListNode* fast = head;
+	while (fast != NULL && fast->next != NULL)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+	if (fast != NULL)
+	{
+		slow->next = reverseList(slow->next);
+		slow = slow->next;
+	}
+	else
+	{
+		slow = reverseList(slow);
+	}
+	while (slow != NULL)
+	{
+		if (head->val != slow->val)
+		{
+			return false;
+		}
+		head = head->next;
+		slow = slow->next;
+	}
+	return true;
+}
+
+TreeNode* Function::lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
+{
+	TreeNode* mid = root;
+	while (1)
+	{
+		if (mid->val < p->val && mid->val < q->val)
+		{
+			mid = mid->right;
+		}
+		else if (mid->val > p->val && mid->val > q->val)
+		{
+			mid = mid->left;
+		}
+		else
+		{
+			return mid;
+		}
+	}
+}
+
+void Function::deleteNode(ListNode* node)
+{
+	if (node == NULL)
+	{
+		return;
+	}
+	ListNode* tmpNode = node->next;
+	node->val = tmpNode->val;
+	node->next = tmpNode->next;
+	delete tmpNode;
+}
+
+bool Function::isAnagram(string s, string t)
+{
+	if (s.length() != t.length())
+	{
+		return false;
+	}
+	map<char, int> sm;
+	map<char, int> tm;
+	for (int i = 0; i < s.length(); i++)
+	{
+		sm[s[i]]++;
+		tm[t[i]]++;
+	}
+	map<char, int>::iterator st = sm.begin();
+	map<char, int>::iterator tt = tm.begin();
+	while (st != sm.end())
+	{
+		if (st->first != tt->first || st->second != tt->second)
+		{
+			return false;
+		}
+		st++;
+		tt++;
+	}
+	return true;
+}
+
+vector<string> Function::binaryTreePaths(TreeNode* root)
+{
+	vector<string> vec;
+	if (root == NULL)
+	{
+		return vec;
+	}
+	string s = "";
+	addTreePaths(root, s, &vec);
+	return vec;
+}
+
+void Function::addTreePaths(TreeNode* node, string tmpS, vector<string> *vec)
+{
+	char buffer[20];
+	sprintf(buffer, "%d", node->val);
+	if (tmpS == "")
+	{
+		tmpS = buffer;
+	}
+	else
+	{
+		tmpS = tmpS + "->" + buffer;
+	}
+	if (node->left != NULL)
+	{
+		addTreePaths(node->left, tmpS, vec);
+	}
+	if (node->right != NULL)
+	{
+		addTreePaths(node->right, tmpS, vec);
+	}
+	if (node->left == NULL && node->right == NULL)
+	{
+		vec->push_back(tmpS);
+	}
+}
+
+int Function::addDigits(int num)
+{
+	while (1)
+	{
+		int sum = 0;
+		if (num / 10 == 0)
+		{
+			return num;
+		}
+		do
+		{
+			sum += num % 10;
+			num /= 10;
+		}while (num != 0);
+		num = sum;
+	}
+}
+
+bool Function::isUgly(int num)
+{
+	if (num <= 0)
+	{
+		return false;
+	}
+	while (1)
+	{
+		if (num == 1)
+		{
+			return true;
+		}
+		if (num % 2 != 0 && num % 3 != 0 && num % 5 != 0)
+		{
+			return false;
+		}
+		else if (num % 2 == 0)
+		{
+			num /= 2;
+		}
+		else if (num % 3 == 0)
+		{
+			num /= 3;
+		}
+		else if (num % 5 == 0)
+		{
+			num /= 5;
+		}
+	}
+}
+
+int Function::missingNumber(vector<int>& nums)
+{
+	int r = 0, i;
+	for (i = 0; i < nums.size(); i++)
+	{
+		r ^= i;
+		r ^= nums[i];
+	}
+	r ^= i;
+	return r;
+}
+
+int Function::firstBadVersion(int n)
+{
+	if (n == 1)
+	{
+		return 1;
+	}
+	int first = 1, end = n;
+	int mid;
+	while (first < end)
+	{
+		mid = first + (end - first) / 2;
+		if (isBadVersion(mid))
+		{
+			end = mid;
+		}
+		else
+		{
+			first = mid + 1;
+		}
+	}
+	return first;
+}
+
+bool Function::isBadVersion(int version)
+{
+	if (version > 5)
+	{
+		return true;
+	}
+	return false;
+}
+
+void Function::moveZeroes(vector<int>& nums)
+{
+	int first = 0;
+	int tmp;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (nums[first] != 0 && nums[i] == 0)
+		{
+			first = i;
+		}
+		else if (nums[first] == 0 && nums[i] != 0)
+		{
+			tmp = nums[i];
+			nums[i] = nums[first];
+			nums[first] = tmp;
+			first++;
+		}
+	}
+}

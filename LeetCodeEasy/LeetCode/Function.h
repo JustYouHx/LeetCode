@@ -165,9 +165,33 @@ public:
 
 	static bool containsNearbyDuplicate(vector<int>& nums, int k);	// <219> 判断在k的间隔中是否存在重复元素
 
-	// <225> 新建类MyStack，进行push pop等操作，要求使用queue操作
+	// <225> 新建类MyStack，进行push pop等操作，要求使用queue操作数据
 
 	static TreeNode* invertTree(TreeNode* root);	// <226> 把一个二叉树左右翻转，使用递归交换每个节点的左右节点即可
 
 	static bool isPowerOfTwo(int n);	// <231> 判断一个数是否是2的n次幂，只需递归除以2即可
+
+	// <232> 新建类MyQueue，进行push pop等操作，要求使用stack操作数据
+
+	static bool isPalindromeList(ListNode* head);	// <234> 判断一个单向链表是否是回文链表，需将后半段翻转
+
+	static TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);	// <235> 寻找二叉平衡树中，两个节点的最低共同祖先
+
+	static void deleteNode(ListNode* node);	// <237> 删除链表中的节点，假设该节点不是尾节点
+
+	static bool isAnagram(string s, string t);	// <242> 判断t是否是s颠倒字母顺序构成的，可以先给string排序sort函数，然后比较两个字符串是否一样
+
+	static vector<string> binaryTreePaths(TreeNode* root);	// <257> 获取二叉树的所有路径
+	static void addTreePaths(TreeNode* node, string tmpS, vector<string> *vec);
+
+	static int addDigits(int num);	// <258> 把一个非负整数的每一位相加，直到和为一位数为止，比如38,3+8=11,1+1=2，结果为2
+
+	static bool isUgly(int num);	// <263> 判断一个正数是否是丑陋数，丑陋数是指只能被2、3、5整除的数，1也是丑陋数
+
+	static int missingNumber(vector<int>& nums);	// <268> 从0、1、...、n中抽出n个数，找出哪个数丢失了（使用异或）
+
+	static int firstBadVersion(int n);	// <278> 找到n个版本中第一个有bug的版本，提供判断当前版本是否有bug的函数如下
+	static bool isBadVersion(int version);
+
+	static void moveZeroes(vector<int>& nums);	// <283> 把数组所有为0的元素放到最后面，要求不能复制数组，并且最小的操作
 };
