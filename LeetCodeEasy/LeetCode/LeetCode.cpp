@@ -18,22 +18,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	cin >> x;
 	vector<int> strs;
 	vector<int> strs2;
+	vector<int> nums;
+	strs.push_back(1);
 	strs.push_back(2);
-	strs.push_back(4);
-	strs.push_back(5);
-	strs.push_back(8);
-	strs.push_back(0);
-	strs.push_back(0);
-	strs.push_back(0);
-	strs2.push_back(1);
-	strs2.push_back(8);
-	strs2.push_back(1);
-	strs2.push_back(1);
+	strs.push_back(2);
+	strs.push_back(1);
+//	strs.push_back(0);
+//	strs.push_back(0);
+//	strs.push_back(0);
+	strs2.push_back(2);
+	strs2.push_back(2);
+//	strs2.push_back(1);
+//	strs2.push_back(1);
 
-	int i = 14;
+	int i = 8;
 
-	string s1 = "nadd";
-	string s2 = "andd";
+	string s1 = "baa";
+	string s2 = "aba";
 
 //	int r = Function::myReverse(x);
 //	bool r = Function::isPalindrome(x);
@@ -62,7 +63,14 @@ int _tmain(int argc, _TCHAR* argv[])
 //	bool r = Function::isAnagram(s1, s2);
 //	int r = Function::addDigits(i);
 //	bool r = Function::isUgly(i);
-	int r = Function::firstBadVersion(i);
+//	int r = Function::firstBadVersion(i);
+//	bool r = Function::wordPattern(s1, s2);
+//	string r = Function::reverseVowels(s1);
+//	nums = Function::intersect(strs, strs2);
+//	bool r = Function::isPerfectSquare(i);
+//	int r = Function::getSum(12, 45);
+//	int r = Function::guessNumber(i);
+	bool r = Function::canConstruct(s1, s2);
 
 	cout << "\n½á¹û£º" << r << endl;
 //	cout << strs2[0] << endl;
@@ -72,6 +80,11 @@ int _tmain(int argc, _TCHAR* argv[])
 //	cout << strs[4] << endl;
 //	cout << strs[5] << endl;
 //	cout << strs[6] << endl;
+
+	//for (int j = 0; j < nums.size(); j++)
+	//{
+	//	cout << nums[j] << endl;
+	//}
 
 	system("pause");
 	return 0;

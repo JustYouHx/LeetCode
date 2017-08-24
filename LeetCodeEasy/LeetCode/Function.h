@@ -194,4 +194,33 @@ public:
 	static bool isBadVersion(int version);
 
 	static void moveZeroes(vector<int>& nums);	// <283> 把数组所有为0的元素放到最后面，要求不能复制数组，并且最小的操作
+
+	static bool wordPattern(string pattern, string str);	// <290> 判断str是否与pattern格式一致，比如pattern为“aab”，str为“be be key”
+
+	static bool canWinNim(int n);	// <292> 拿石头比赛，每次只能拿1、2、3块石头，谁拿到最后一块石头算赢，假设双方都足够聪明，自己先拿，共n块石头时是否能赢
+
+	// <303> 新建类NumArray，初始化输入一个数组，要求实现int sumRange(int i, int j)函数，并且该函数会调用好多次，需要考虑复杂度
+
+	static bool isPowerOfTree(int n);	// <326> 判断一个数是否是3的次方，最好不用循环或递归
+
+	static bool isPowerOfFour(int n);	// <342> 判断一个数是否是4的次方，最好不用循环或递归
+
+	static string reverseString(string s);	// <344> 翻转一个字符串
+
+	static string reverseVowels(string s);	// <345> 翻转字符串中的元音字母
+	static bool isVowel(char c);
+
+	static vector<int> intersection(vector<int>& nums1, vector<int>& nums2);	// <349> 找到两个数组的公共元素，要求不能重复
+
+	static vector<int> intersect(vector<int>& nums1, vector<int>& nums2);	// <350> 找到两个数组的公共元素，要求重复的也要记录
+
+	static bool isPerfectSquare(int num);	// <367> 判断num是否能开平方
+
+	static int getSum(int a, int b);	// <371> 求两个数的和，要求不能使用加号
+
+	static int guessNumber(int n);	// <374> 猜数游戏，猜一个在1到n范围内的数，给定guess函数如下，会返回-1/0/1三个值
+	static int guess(int num);
+
+	static bool canConstruct(string ransomNote, string magazine);	// <383> 用magazine上的字符组成勒索信，要求ransomNote每个字符个数得小于magazine相同字符的个数
+
 };

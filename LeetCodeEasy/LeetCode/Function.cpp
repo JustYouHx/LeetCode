@@ -1539,3 +1539,289 @@ void Function::moveZeroes(vector<int>& nums)
 		}
 	}
 }
+
+bool Function::wordPattern(string pattern, string str)
+{
+	map<char, string> tmpMap1;
+	map<string, char> tmpMap2;
+	map<char, string>::iterator it1;
+	map<string, char>::iterator it2;
+	int i, j;
+	string tmpStr = "";
+	for (i = 0, j = 0; j <= str.length(); j++)
+	{
+		if (j != str.length() && str.at(j) != ' ')
+		{
+			if (i == pattern.length())
+			{
+				return false;
+			}
+			tmpStr.append(1, str.at(j));
+		}
+		else
+		{
+			it1 = tmpMap1.find(pattern.at(i));
+			it2 = tmpMap2.find(tmpStr);
+			if (it1 == tmpMap1.end() && it2 == tmpMap2.end())
+			{
+				tmpMap1.insert(map<char, string>::value_type(pattern.at(i), tmpStr));
+				tmpMap2.insert(map<string, char>::value_type(tmpStr, pattern.at(i)));
+			}
+			else if (it1 != tmpMap1.end() && it2 != tmpMap2.end())
+			{
+				if (tmpMap1[pattern.at(i)] != tmpStr || tmpMap2[tmpStr] != pattern.at(i))
+				{
+					return false;
+				}
+			}
+			else
+			{
+				return false;
+			}
+			i++;
+			tmpStr = "";
+		}
+	}
+	if (i < pattern.length())
+	{
+		return false;
+	}
+	return true;
+}
+
+bool Function::canWinNim(int n)
+{
+	if (n % 4 != 0)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Function::isPowerOfTree(int n)
+{
+	// 如果不用循环，可以用穷举法，把所有3的次方列出来
+	while (n > 1)
+	{
+		if (n % 3 == 0)
+		{
+			n /= 3;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	if (n == 1)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Function::isPowerOfFour(int n)
+{
+	switch(n)
+	{
+	case 0x00000001:
+	case 0x00000004:
+	case 0x00000010:
+	case 0x00000040:
+	case 0x00000100:
+	case 0x00000400:
+	case 0x00001000:
+	case 0x00004000:
+	case 0x00010000:
+	case 0x00040000:
+	case 0x00100000:
+	case 0x00400000:
+	case 0x01000000:
+	case 0x04000000:
+	case 0x10000000:
+	case 0x40000000:
+		return true;
+	default:
+		return false;
+	}
+}
+
+string Function::reverseString(string s)
+{
+	string tmpStr = "";
+	for (int i = 0; i < s.length(); i++)
+	{
+		tmpStr.insert(0, 1, s.at(i));
+	}
+	return tmpStr;
+}
+
+string Function::reverseVowels(string s)
+{
+	int i = 0, j = s.length() - 1;
+	while (i < j)
+	{
+		if (isVowel(s.at(i)) && isVowel(s.at(j)))
+		{
+			char tmpC = s.at(i);
+			s = s.replace(i, 1, 1, s.at(j));
+			s = s.replace(j, 1, 1, tmpC);
+			i++;
+			j--;
+		}
+		if (!isVowel(s.at(i)))
+		{
+			i++;
+		}
+		if (!isVowel(s.at(j)))
+		{
+			j--;
+		}
+	}
+	return s;
+}
+
+bool Function::isVowel(char c)
+{
+	if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || 
+		c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U')
+	{
+		return true;
+	}
+	return false;
+}
+
+vector<int> Function::intersection(vector<int>& nums1, vector<int>& nums2)
+{
+	set<int> tmpSet(nums1.begin(), nums1.end());
+	vector<int> vec;
+	for (int i = 0; i < nums2.size(); i++)
+	{
+		if (tmpSet.count(nums2[i]))
+		{
+			vec.push_back(nums2[i]);
+			tmpSet.erase(nums2[i]);
+		}
+	}
+	return vec;
+}
+
+vector<int> Function::intersect(vector<int>& nums1, vector<int>& nums2)
+{
+	multiset<int> tmpSet(nums1.begin(), nums1.end());
+	multiset<int>::iterator it;
+	vector<int> vec;
+	for (int i = 0; i < nums2.size(); i++)
+	{
+		it = tmpSet.find(nums2[i]);
+		if (it != tmpSet.end())
+		{
+			vec.push_back(nums2[i]);
+			tmpSet.erase(it);
+		}
+	}
+	return vec;
+}
+
+bool Function::isPerfectSquare(int num)
+{
+	if (num == 1)
+	{
+		return true;
+	}
+	int start = 1, stop = num;
+	long long tmp, mid;
+	while (start < stop - 1)
+	{
+		mid = start + (stop - start) / 2;
+		tmp = mid * mid;
+		if (tmp == num)
+		{
+			return true;
+		}
+		else if (tmp < num)
+		{
+			start = mid;
+		}
+		else if (tmp > num)
+		{
+			stop = mid;
+		}
+	}
+	return false;
+}
+
+int Function::getSum(int a, int b)
+{
+	if (a == 0)
+	{
+		return b;
+	}
+	return getSum((a & b) << 1, a^b);
+}
+
+int Function::guessNumber(int n)
+{
+	int min = 1, max = n, mid;
+	if (guess(1) == 0)
+	{
+		return 1;
+	}
+	if (guess(n) == 0)
+	{
+		return n;
+	}
+	while (min < max)
+	{
+		mid = min + (max - min) / 2;
+		if (1 == guess(mid))
+		{
+			min = mid;
+		}
+		else if (-1 == guess(mid))
+		{
+			max = mid;
+		}
+		else
+		{
+			return mid;
+		}
+	}
+	return 0;
+}
+
+int Function::guess(int num)
+{
+	if (num > 5)
+	{
+		return -1;
+	}
+	else if (num < 5)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+bool Function::canConstruct(string ransomNote, string magazine)
+{
+	vector<int> tmpVec(26);
+	for (int i = 0; i < magazine.length(); i++)
+	{
+		tmpVec[magazine.at(i) - 'a']++;
+	}
+	for (int i = 0; i < ransomNote.length(); i++)
+	{
+		tmpVec[ransomNote.at(i) - 'a']--;
+	}
+	for (int i = 0; i < 26; i++)
+	{
+		if (tmpVec[i] < 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
