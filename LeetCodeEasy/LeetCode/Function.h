@@ -222,5 +222,25 @@ public:
 	static int guess(int num);
 
 	static bool canConstruct(string ransomNote, string magazine);	// <383> 用magazine上的字符组成勒索信，要求ransomNote每个字符个数得小于magazine相同字符的个数
+	
+	static int firstUniqChar(string s);	// <387> 返回第一个不重复字母的index
 
+	static char findTheDifference(string s, string t);	// <389> t是由s打乱顺序再随机位置添加一个字母组成的
+
+	static int findNthDigit(int n);	// <400> 把1,2,3,4,...9,10,11...99,100,101,...看成一个字符串，返回第n个数字，比如n为11时，返回0
+
+	static vector<string> readBinaryWatch(int num);	// <401> 二进制手表，时钟由4位二进制表示，分钟由6位二进制表示，当10个LED等亮了num个，返回可能的时间组合
+	static vector<string> readBinaryNum(int num, int max);
+
+	static int sumOfLeftLeaves(TreeNode* root);	// <404> 求二叉树左叶子节点的值的和
+
+	static string toHex(int num);	// <405> 返回num的十六进制字符串
+
+	static int longestPalindrome(string s);	// <409> 返回字符串中可能存在的最长回文字符个数，比如abccccdd，返回7
+
+	static vector<string> fizzBuzz(int n);	// <412> 返回字符串vector，能被3整除的为Fizz，能被5整除的为Buzz，能被两者整除的为FizzBuzz
+
+	static int thirdMax(vector<int>& nums);	// <414> 找出非空数组中的第三大的值，若不存在第三大的，则返回最大的，比如2,2,3,1，返回第三大的为1
+
+	static string addStrings(string num1, string num2);	// <415> 由两个数组组成的字符串，返回相加后的字符串，要求不能转换为整型相加	
 };

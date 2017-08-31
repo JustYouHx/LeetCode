@@ -1825,3 +1825,289 @@ bool Function::canConstruct(string ransomNote, string magazine)
 	}
 	return true;
 }
+
+int Function::firstUniqChar(string s)
+{
+	map<char, int> tmpMap;
+	map<char, int>::iterator it;
+	for (int i = 0; i < s.length(); i++)
+	{
+		it = tmpMap.find(s.at(i));
+		if (it == tmpMap.end())
+		{
+			tmpMap.insert(map<char, int>::value_type(s.at(i), 1));
+		}
+		else
+		{
+			tmpMap[s.at(i)]++;
+		}
+	}
+	for (int i = 0; i < s.length(); i++)
+	{
+		if (tmpMap[s.at(i)] == 1)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+char Function::findTheDifference(string s, string t)
+{
+	map<char, int> tmpMap;
+	map<char, int>::iterator it;
+	for (int i = 0; i < s.length(); i++)
+	{
+		it = tmpMap.find(s.at(i));
+		if (it == tmpMap.end())
+		{
+			tmpMap.insert(map<char, int>::value_type(s.at(i), 1));
+		}
+		else
+		{
+			tmpMap[s.at(i)]++;
+		}
+	}
+	for (int i = 0; i < t.length(); i++)
+	{
+		it = tmpMap.find(t.at(i));
+		if (it == tmpMap.end())
+		{
+			return t.at(i);
+		}
+		else
+		{
+			if (tmpMap[t.at(i)] == 0)
+			{
+				return t.at(i);
+			}
+			else
+			{
+				tmpMap[t.at(i)]--;
+			}
+		}
+	}
+}
+
+int Function::findNthDigit(int n)
+{
+	long long num = 9, k = 1 ,i = 1, t, r;
+	while (n > num)
+	{
+		k *= 10;
+		i++;
+		num += k * 9 * i;
+	}
+	n = k * 9 * i - (num - n);
+	t = i - (n - 1) % i;
+	n = (n - 1) / i + k;
+	while (t > 0)
+	{
+		r = n % 10;
+		n = n / 10;
+		t--;
+	}
+	return r;
+}
+
+vector<string> Function::readBinaryWatch(int num)
+{
+	vector<string> ret;
+	for (int h = 0; h <= num; h++)
+	{
+		int m = num - h;
+		if (h > 4)
+		{
+			break;
+		}
+		if (m > 6)
+		{
+			continue;
+		}
+		vector<string> hvec = readBinaryNum(h, 12);
+		vector<string> mvec = readBinaryNum(m, 60);
+		for (int p = 0; p < hvec.size(); p++)
+		{
+			string sh = hvec[p];
+			for (int q = 0; q < mvec.size(); q++)
+			{
+				string sm = mvec[q];
+				if (sm.length() == 1)
+				{
+					sm = "0" + sm;
+				}
+				ret.push_back(sh + ":" + sm);
+			}
+		}
+	}
+	return ret;
+}
+
+vector<string> Function::readBinaryNum(int num, int max)
+{
+	vector<string> vec;
+	for (int i = 0; i < max; i++)
+	{
+		int tmp = i;
+		int sum = 0;
+		char s[2];
+		while (tmp != 0)
+		{
+			if (tmp % 2 == 1)
+			{
+				sum++;
+			}
+			tmp /= 2;
+		}
+		if (sum == num)
+		{
+			sprintf(s, "%d", i);
+			vec.push_back(s);
+		}
+	}
+	return vec;
+}
+
+int Function::sumOfLeftLeaves(TreeNode* root)
+{
+	if (root == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		if (root->left != NULL && root->left->left == NULL && root->left->right == NULL)
+		{
+			return root->left->val + sumOfLeftLeaves(root->right);
+		}
+		return sumOfLeftLeaves(root->left) + sumOfLeftLeaves(root->right);
+	}
+}
+
+string Function::toHex(int num)
+{
+	char hex[] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+	string s = "";
+	while (num != 0)
+	{
+		s.insert(0, 1, hex[num & 15]);
+		num = (unsigned)num >> 4;
+	}
+	return s;
+}
+
+int Function::longestPalindrome(string s)
+{
+	int sum = 0;
+	map<char, int> tmpMap;
+	map<char, int>::iterator it;
+	for (int i = 0; i < s.length(); i++)
+	{
+		it = tmpMap.find(s.at(i));
+		if (it == tmpMap.end())
+		{
+			tmpMap.insert(map<char, int>::value_type(s.at(i), 1));
+		}
+		else
+		{
+			tmpMap[s.at(i)]++;
+		}
+	}
+	it = tmpMap.begin();
+	while (it != tmpMap.end())
+	{
+		if (it->second % 2 == 0 || sum % 2 == 0)
+		{
+			sum += it->second;
+		}
+		else
+		{
+			sum += it->second - 1;
+		}
+		it++;
+	}
+	return sum;
+}
+
+vector<string> Function::fizzBuzz(int n)
+{
+	vector<string> vec;
+	for (int i = 1; i <= n; i++)
+	{
+		if (i % 3 == 0 && i % 5 == 0)
+		{
+			vec.push_back("FizzBuzz");
+		}
+		else if (i % 3 == 0)
+		{
+			vec.push_back("Fizz");
+		}
+		else if (i % 5 == 0)
+		{
+			vec.push_back("Buzz");
+		}
+		else
+		{
+			char buffer[12];
+			sprintf(buffer, "%d", i);
+			vec.push_back(buffer);
+		}
+	}
+	return vec;
+}
+
+int Function::thirdMax(vector<int>& nums)
+{
+	set<int> tmpSet;
+	set<int>::const_iterator it;
+	int t = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		tmpSet.insert(nums[i]);
+	}
+	it = tmpSet.end();
+	do
+	{
+		it--;
+		t++;
+		if (t == 3)
+		{
+			return *it;
+		}
+	}while(it != tmpSet.begin());
+	it = --tmpSet.end();
+	return *it;
+}
+
+string Function::addStrings(string num1, string num2)
+{
+	string sum;
+	int len1 = num1.length() - 1;
+	int len2 = num2.length() - 1;
+	int k = 0, tmp = 0;
+	while (len1 >= 0 || len2 >= 0)
+	{
+		if (len1 >= 0)
+		{
+			tmp += num1.at(len1) - '0';
+		}
+		if (len2 >= 0)
+		{
+			tmp += num2.at(len2) - '0';
+		}
+		if (k)
+		{
+			tmp++;
+		}
+		k = tmp / 10;
+		sum.insert(0, 1, char(tmp % 10 + '0'));
+		tmp = 0;
+		len1--;
+		len2--;
+	}
+	if (k)
+	{
+		sum.insert(0, 1, '1');
+	}
+	return sum;
+}

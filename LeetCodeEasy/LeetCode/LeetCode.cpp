@@ -20,9 +20,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<int> strs2;
 	vector<int> nums;
 	strs.push_back(1);
-	strs.push_back(2);
-	strs.push_back(2);
-	strs.push_back(1);
+//	strs.push_back(5);
+//	strs.push_back(4);
+//	strs.push_back(4);
 //	strs.push_back(0);
 //	strs.push_back(0);
 //	strs.push_back(0);
@@ -31,10 +31,10 @@ int _tmain(int argc, _TCHAR* argv[])
 //	strs2.push_back(1);
 //	strs2.push_back(1);
 
-	int i = 8;
+	int i = -2;
 
-	string s1 = "baa";
-	string s2 = "aba";
+	string s1 = "213";
+	string s2 = "812";
 
 //	int r = Function::myReverse(x);
 //	bool r = Function::isPalindrome(x);
@@ -70,7 +70,14 @@ int _tmain(int argc, _TCHAR* argv[])
 //	bool r = Function::isPerfectSquare(i);
 //	int r = Function::getSum(12, 45);
 //	int r = Function::guessNumber(i);
-	bool r = Function::canConstruct(s1, s2);
+//	bool r = Function::canConstruct(s1, s2);
+//	int r = Function::firstUniqChar(s1);
+//	char r = Function::findTheDifference(s1, s2);
+//	int r = Function::findNthDigit(i);
+//	string r = Function::toHex(i);
+//	int r = Function::longestPalindrome(s1);
+//	int r = Function::thirdMax(strs);
+	string r = Function::addStrings(s1, s2);
 
 	cout << "\n½á¹û£º" << r << endl;
 //	cout << strs2[0] << endl;
