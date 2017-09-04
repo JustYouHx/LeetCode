@@ -2111,3 +2111,126 @@ string Function::addStrings(string num1, string num2)
 	}
 	return sum;
 }
+
+int Function::coutSegments(string s)
+{
+	int count = 0;
+	bool find = false;
+	for (int i = 0; i < s.length(); i++)
+	{
+		if (!find && s.at(i) != ' ')
+		{
+			count++;
+			find = true;
+		}
+		else if ( s.at(i) == ' ')
+		{
+			find = false;
+		}
+	}
+	return count;
+}
+
+int Function::pathSum(TreeNode* root, int sum)
+{
+	int count = 0;
+	vector<int> vec_sum;
+	if (root != NULL)
+	{
+		pathSumCount(root, vec_sum, count, sum);
+	}
+	return count;
+}
+
+void Function::pathSumCount(TreeNode* node, vector<int> vec_sum, int &count, const int &sum)
+{
+	for (int i = 0; i < vec_sum.size(); i++)
+	{
+		vec_sum[i] += node->val;
+		if (vec_sum[i] == sum)
+		{
+			count++;
+		}
+	}
+	if (node->val == sum)
+	{
+		count++;
+	}
+	vec_sum.push_back(node->val);
+	if (node->left != NULL)
+	{
+		pathSumCount(node->left, vec_sum, count, sum);
+	}
+	if (node->right != NULL)
+	{
+		pathSumCount(node->right, vec_sum, count, sum);
+	}
+}
+
+vector<int> Function::findAnagrams(string s, string p)
+{
+	vector<int> pv(26,0), sv(26,0), res;
+	if(s.size() < p.size())
+	{
+		return res;
+	}
+	for(int i = 0; i < p.size(); ++i)
+	{
+		++pv[p[i]-'a'];
+		++sv[s[i]-'a'];
+	}
+	if(pv == sv)
+	{
+		res.push_back(0);
+	}
+	for(int i = p.size(); i < s.size(); ++i)
+	{
+		++sv[s[i]-'a'];
+		--sv[s[i-p.size()]-'a']; 
+		if(pv == sv)
+		{
+			res.push_back(i-p.size()+1);
+		}
+	}
+	return res;
+}
+
+int Function::arrangeCoins(int n)
+{
+	long long sum = 0;
+	int i = 0;
+	if (n == 0)
+	{
+		return 0;
+	}
+	while (sum <= n)
+	{
+		i++;
+		sum += i;
+	}
+	return i - 1;
+}
+
+int Function::numberOfBoomerangs(vector<pair<int, int>>& points)
+{
+	int len = points.size(), sum = 0;
+	map<int, int> tmpMap;
+	map<int, int>::iterator it;
+	for (int i = 0; i < len; i++)
+	{
+		for (int j = 0; j < len; j++)
+		{
+			int x = points[i].first - points[j].first;
+			int y = points[i].second - points[j].second;
+			tmpMap[x * x + y * y]++;
+		}
+		it = tmpMap.begin();
+		while (it != tmpMap.end())
+		{
+			sum += (it->second) * (it->second - 1);
+			it++;
+		}
+		tmpMap.clear();
+	}
+	return sum;
+}

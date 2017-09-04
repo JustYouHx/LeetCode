@@ -242,5 +242,16 @@ public:
 
 	static int thirdMax(vector<int>& nums);	// <414> 找出非空数组中的第三大的值，若不存在第三大的，则返回最大的，比如2,2,3,1，返回第三大的为1
 
-	static string addStrings(string num1, string num2);	// <415> 由两个数组组成的字符串，返回相加后的字符串，要求不能转换为整型相加	
+	static string addStrings(string num1, string num2);	// <415> 由两个数组组成的字符串，返回相加后的字符串，要求不能转换为整型相加
+
+	static int coutSegments(string s);	// <434> 计算一段字符中的字段个数，用空格分开的就是字段
+
+	static int pathSum(TreeNode* root, int sum);	// 找到值的和为sum的路径的个数，路径需从上到下，但起始和结束没有要求
+	static void pathSumCount(TreeNode* node, vector<int> vec_sum, int &count, const int &sum);
+
+	static vector<int> findAnagrams(string s, string p);	// <438> 找到s中包含p的位置，比如"cbaebabacd","abc",返回[0,6]
+
+	static int arrangeCoins(int n);	// <441> 用n个硬币组成一个楼梯，第一行1个，第二行2个，以此类推，求完整的楼梯数，比如n为5，组成1/2/2，完整的有2层
+
+	static int numberOfBoomerangs(vector<pair<int, int>>& points);	// <447> 定义一种三元组结构，在三元组(i, j, k)中i和j之间的距离与i和k之间的距离相等。找到坐标中，有几组这样结构。
 };

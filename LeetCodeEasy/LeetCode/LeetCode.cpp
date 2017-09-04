@@ -31,9 +31,9 @@ int _tmain(int argc, _TCHAR* argv[])
 //	strs2.push_back(1);
 //	strs2.push_back(1);
 
-	int i = -2;
+	int i = INT_MAX - 1;
 
-	string s1 = "213";
+	string s1 = "Hello, my name is John";
 	string s2 = "812";
 
 //	int r = Function::myReverse(x);
@@ -77,7 +77,9 @@ int _tmain(int argc, _TCHAR* argv[])
 //	string r = Function::toHex(i);
 //	int r = Function::longestPalindrome(s1);
 //	int r = Function::thirdMax(strs);
-	string r = Function::addStrings(s1, s2);
+//	string r = Function::addStrings(s1, s2);
+//	int r = Function::coutSegments(s1);
+	int r = Function::arrangeCoins(i);
 
 	cout << "\n½á¹û£º" << r << endl;
 //	cout << strs2[0] << endl;
