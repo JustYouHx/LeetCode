@@ -2234,3 +2234,365 @@ int Function::numberOfBoomerangs(vector<pair<int, int>>& points)
 	}
 	return sum;
 }
+
+vector<int> Function::findDisappearedNumbers(vector<int>& nums)
+{
+	int len = nums.size();
+	vector<int> res;
+	vector<int> tmpVec(len + 1, 0);
+	for (int i = 0; i < len; i++)
+	{
+		tmpVec[nums[i]]++;
+	}
+	for (int i = 1; i <= len; i++)
+	{
+		if (tmpVec[i] == 0)
+		{
+			res.push_back(i);
+		}
+	}
+	return res;
+}
+
+int Function::minMoves(vector<int>& nums)
+{
+	int sum = 0, count = 0;
+	int min = nums[0];
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (min <= nums[i])
+		{
+			sum += nums[i] - min;
+		}
+		else
+		{
+			sum += (min - nums[i]) * count;
+			min = nums[i];
+		}
+		count++;
+	}
+	return sum;
+}
+
+int Function::findContentChildren(vector<int>& g, vector<int>& s)
+{
+	int num = 0, mark = 0;
+	sort(g.begin(), g.end());
+	sort(s.begin(), s.end());
+	for (int i = 0; i < g.size(); i++)
+	{
+		while (mark < s.size())
+		{
+			if (g[i] <= s[mark])
+			{
+				num++;
+				mark++;
+				break;
+			}
+			mark++;
+		}
+		if (mark >= s.size())
+		{
+			return num;
+		}
+	}
+	return num;
+}
+
+int Function::poorPigs(int buckets, int minutesToDie, int minutesToTest)
+{
+	int n = minutesToTest / minutesToDie;
+	int i = 0, sum = 1;
+	while (sum < buckets)
+	{
+		sum *= n + 1;
+		i++;
+	}
+	return i;
+}
+
+bool Function::repeatedSubstringPattern(string s)
+{
+	int len  = s.length();
+	for (int i = 1; i < len; i++)
+	{
+		if (len % i == 0)
+		{
+			string tmp, t;
+			int k = len / i;
+			tmp = s.substr(0, i);
+			for (int j = 0; j < k; j++)
+			{
+				t += tmp;
+			}
+			if (t == s)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+int Function::hammingDistance(int x, int y)
+{
+	int num = 0;
+	for (int i = 0; i < 32; i++)
+	{
+		if (x % 2 != y % 2)
+		{
+			num++;
+		}
+		x /= 2;
+		y /= 2;
+	}
+	return num;
+}
+
+int Function::islandPerimeter(vector<vector<int>>& grid)
+{
+	int per = 0, b = 0, lenv, lenh;
+	if (grid.empty())
+	{
+		return 0;
+	}
+	else
+	{
+		lenv = grid.size();
+		lenh = grid[0].size();
+	}
+	for (int i = 0; i < lenv; i++)
+	{
+		b = 0;
+		for (int j = 0; j < lenh; j++)
+		{
+			if (b != grid[i][j])
+			{
+				per++;
+			}
+			b = grid[i][j];
+		}
+		if (b)
+		{
+			per++;
+		}
+	}
+	for (int j = 0; j < lenh; j++)
+	{
+		b = 0;
+		for (int i = 0; i < lenv; i++)
+		{
+			if (b != grid[i][j])
+			{
+				per++;
+			}
+			b = grid[i][j];
+		}
+		if (b)
+		{
+			per++;
+		}
+	}
+	return per;
+}
+
+int Function::findRadius(vector<int>& houses, vector<int>& heaters)
+{
+	int len1 = houses.size(), len2 = heaters.size();
+	int red = 0, k = 0;
+	sort(houses.begin(), houses.end());
+	sort(heaters.begin(), heaters.end());
+	for (int i = 0; i < len1; i++)
+	{
+		int tmp = INT_MAX;
+		while (k < len2)
+		{
+			if (houses[i] >= heaters[k])
+			{
+				tmp = houses[i] - heaters[k];
+			}
+			else
+			{
+				if (heaters[k] - houses[i] <= tmp)
+				{
+					tmp = heaters[k] - houses[i];
+				}
+				else
+				{
+					break;
+				}
+			}
+			k++;
+		}
+		k--;
+		if (k == len2 - 1)
+		{
+			tmp = abs(houses[i] - heaters[k]);
+		}
+		red = max(red, tmp);
+	}
+	return red;
+}
+
+int Function::findComplement(int num)
+{
+	int res = 0, k = 1;
+	while (num > 0)
+	{
+		if (num % 2 == 0)
+		{
+			res += k;
+		}
+		num /= 2;
+		k *= 2;
+	}
+	return res;
+}
+
+int Function::largestPalindrome(int n)
+{
+	if (n == 1)
+	{
+		return 9;
+	}
+	int high = pow(10.0, n) - 1, low = high / 10;
+	for (int i = high; i >= low; i--)
+	{
+		long long pal = largestPalindromeGet(i);
+		for (long long j = high; j >= low; j--)
+		{
+			if (pal / j > high)
+			{
+				break;
+			}
+			if (pal % j == 0 && pal / j >=low)
+			{
+				return (int)(pal % 1337);
+			}
+		}
+	}
+	return -1;
+}
+
+long long Function::largestPalindromeGet(int num)
+{
+	long long tmp = num;
+	long long r = 0, k = 1;
+	do {
+		r = r * 10 + num % 10;
+		k *= 10;
+	} while(num /= 10);
+	long long ret = tmp * k + r;
+	return ret;
+}
+
+int Function::findMaxConsecutiveOnes(vector<int>& nums)
+{
+	int ret = 0, tmp = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (nums[i] == 1)
+		{
+			tmp++;
+		}
+		else
+		{
+			ret = (ret >= tmp)?ret:tmp;
+			tmp = 0;
+		}
+	}
+	ret = (ret >= tmp)?ret:tmp;
+	return ret;
+}
+
+vector<int> Function::constructRectangle(int area)
+{
+	vector<int> vec;
+	int mid = sqrt(double(area));
+	for (int i = mid; i <= area; i++)
+	{
+		if (area % i == 0)
+		{
+			vec.push_back(i);
+			vec.push_back(area / i);
+			break;
+		}
+	}
+	sort(vec.begin(), vec.end());
+	reverse(vec.begin(), vec.end());
+	return vec;
+}
+
+vector<int> Function::nextGreaterElement(vector<int>& findNums, vector<int>& nums)
+{
+	vector<int> ret;
+	map<int ,int> pos;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		int j = i, n = -1;
+		for ( ; j < nums.size(); j++)
+		{
+			if (nums[j] > nums[i])
+			{
+				n = nums[j];
+				break;
+			}
+		}
+		pos[nums[i]] = n;
+	}
+	for (int i = 0; i < findNums.size(); i++)
+	{
+		ret.push_back(pos[findNums[i]]);
+	}
+	return ret;
+}
+
+vector<string> Function::findWords(vector<string>& words)
+{
+	vector<string> vec;
+	for (int i = 0; i < words.size(); i++)
+	{
+		if (wordOnOneRow(words[i]))
+		{
+			vec.push_back(words[i]);
+		}
+	}
+	return vec;
+}
+
+bool Function::wordOnOneRow(string word)
+{
+	set<char> row1 = {'q','w','e','r','t','y','u','i','o','p'};
+	set<char> row2 = {'a','s','d','f','g','h','j','k','l'};
+	set<char> row3 = {'z','x','c','v','b','n','m'};
+	bool k1 = true, k2 = true, k3 = true;
+	set<char>::iterator it;
+	for (int i = 0; i < word.length(); i++)
+	{
+		if (k1)
+		{
+			it = row1.find(tolower(word[i]));
+			if (it == row1.end())
+			{
+				k1 = false;
+			}
+		}
+		if (k2)
+		{
+			it = row2.find(tolower(word[i]));
+			if (it == row2.end())
+			{
+				k2 = false;
+			}
+		}
+		if (k3)
+		{
+			it = row3.find(tolower(word[i]));
+			if (it == row3.end())
+			{
+				k3 = false;
+			}
+		}
+	}
+	return k1 || k2 || k3;
+}

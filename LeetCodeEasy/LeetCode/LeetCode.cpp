@@ -19,21 +19,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<int> strs;
 	vector<int> strs2;
 	vector<int> nums;
+	strs.push_back(6);
+	strs.push_back(4);
+	strs.push_back(9);
 	strs.push_back(1);
-//	strs.push_back(5);
-//	strs.push_back(4);
-//	strs.push_back(4);
 //	strs.push_back(0);
 //	strs.push_back(0);
 //	strs.push_back(0);
-	strs2.push_back(2);
-	strs2.push_back(2);
-//	strs2.push_back(1);
+	strs2.push_back(5);
+	strs2.push_back(4);
+//	strs2.push_back(5);
 //	strs2.push_back(1);
 
-	int i = INT_MAX - 1;
+	int i = 10;
 
-	string s1 = "Hello, my name is John";
+	string s1 = "abcabcabcabc";
 	string s2 = "812";
 
 //	int r = Function::myReverse(x);
@@ -79,9 +79,13 @@ int _tmain(int argc, _TCHAR* argv[])
 //	int r = Function::thirdMax(strs);
 //	string r = Function::addStrings(s1, s2);
 //	int r = Function::coutSegments(s1);
-	int r = Function::arrangeCoins(i);
-
-	cout << "\n结果：" << r << endl;
+//	int r = Function::arrangeCoins(i);
+//	int r = Function::findContentChildren(strs, strs2);
+//	bool r = Function::repeatedSubstringPattern(s1);
+//	int r = Function::findRadius(strs, strs2);
+//	int r = Function::largestPalindrome(i);
+	nums = Function::constructRectangle(i);
+//	cout << "\n结果：" << r << endl;
 //	cout << strs2[0] << endl;
 //	cout << strs2[1] << endl;
 //	cout << strs2[2] << endl;
@@ -90,10 +94,10 @@ int _tmain(int argc, _TCHAR* argv[])
 //	cout << strs[5] << endl;
 //	cout << strs[6] << endl;
 
-	//for (int j = 0; j < nums.size(); j++)
-	//{
-	//	cout << nums[j] << endl;
-	//}
+	for (int j = 0; j < nums.size(); j++)
+	{
+		cout << nums[j] << endl;
+	}
 
 	system("pause");
 	return 0;

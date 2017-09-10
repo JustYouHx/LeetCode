@@ -254,4 +254,36 @@ public:
 	static int arrangeCoins(int n);	// <441> 用n个硬币组成一个楼梯，第一行1个，第二行2个，以此类推，求完整的楼梯数，比如n为5，组成1/2/2，完整的有2层
 
 	static int numberOfBoomerangs(vector<pair<int, int>>& points);	// <447> 定义一种三元组结构，在三元组(i, j, k)中i和j之间的距离与i和k之间的距离相等。找到坐标中，有几组这样结构。
+
+	static vector<int> findDisappearedNumbers(vector<int>& nums);	// <448> nums中的元素都大于等于1，小于等于n（nums的元素个数），找到nums中没有出现的数字
+
+	static int minMoves(vector<int>& nums);	// <453> 每次可以把nums中的size-1个数加1，求要多少步把所有数变成相等
+
+	static int findContentChildren(vector<int>& g, vector<int>& s);	// <455> g代表小朋友的胃口值，s代表曲奇饼干的大小，分发曲奇给尽可能多的小朋友
+
+	static int poorPigs(int buckets, int minutesToDie, int minutesToTest);	// <458> 用猪试毒药，buckets桶中只有1个有毒药，猪在minutesToDie分钟会死，minutesToTest分钟测试完，求需要多少猪
+
+	static bool repeatedSubstringPattern(string s);	// <459> 判断字符串是否由多个子串重复构成，比如abcabc，为true
+
+	static int hammingDistance(int x, int y);	// <461> 汉明距离，把x和y的二进制进行比较，返回相同位置上不相等的值的个数
+
+	static int islandPerimeter(vector<vector<int>>& grid);	// <463> grid组成一张地图，1代码陆地，0代表水，求陆地的周长
+
+	static int findRadius(vector<int>& houses, vector<int>& heaters);	// <475> 取暖器问题，houses为房子的位置，heaters为取暖器的位置，求取暖器最小范围，能覆盖全部房子
+
+	static int findComplement(int num);	// <476> 返回num二进制的补码的值
+
+	static int largestPalindrome(int n);	// <479> 输入n，求二个n位数的乘机的最大回环数，返回1337的模
+	static long long largestPalindromeGet(int num);
+
+	static int findMaxConsecutiveOnes(vector<int>& nums);	// <485> nums为0和1组成的数组，求连续1的个数，比如1,1,0,0,1,1,1，返回3
+
+	static vector<int> constructRectangle(int area);	// <492> 长方形面积为area，求长宽，要求长宽之差最小
+
+	static vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums);	// <496> findNums是nums的子集，求findNums的每一个元素在nums中下一个更大的数的位置
+
+	static vector<string> findWords(vector<string>& words);	// <500> 找出words中每个字母都在键盘上同一行的单词
+	static bool wordOnOneRow(string word);
+
+
 };
