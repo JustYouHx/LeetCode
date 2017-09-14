@@ -285,5 +285,14 @@ public:
 	static vector<string> findWords(vector<string>& words);	// <500> 找出words中每个字母都在键盘上同一行的单词
 	static bool wordOnOneRow(string word);
 
+	static vector<int> findMode(TreeNode* root);	// <501> 求二分搜索树中的众数
+	static void findModeNums(TreeNode* root, map<int, int> & tmpMap, int & k);
 
+	static string convertToBase7(int num);	// <504> 把num转成7进制，用string表示
+
+	static vector<string> findRelativeRanks(vector<int>& nums);	// <506> nums是得分，返回排名
+
+	static bool checkPerfectNumver(int num);	// <507> 判断一个数是否是它所有约数的和
+
+	static bool detectCapitaUse(string word);	// <520> 判断一个单词的大写字母是否正确，全大写、无大写、大写开头
 };

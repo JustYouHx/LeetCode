@@ -2565,6 +2565,7 @@ bool Function::wordOnOneRow(string word)
 	set<char> row1 = {'q','w','e','r','t','y','u','i','o','p'};
 	set<char> row2 = {'a','s','d','f','g','h','j','k','l'};
 	set<char> row3 = {'z','x','c','v','b','n','m'};
+	//编译器太老不支持上面的初始化
 	bool k1 = true, k2 = true, k3 = true;
 	set<char>::iterator it;
 	for (int i = 0; i < word.length(); i++)
@@ -2595,4 +2596,174 @@ bool Function::wordOnOneRow(string word)
 		}
 	}
 	return k1 || k2 || k3;
+}
+
+vector<int> Function::findMode(TreeNode* root)
+{
+	map<int, int> tmpMap;
+	vector<int> res;
+	int k = 0;
+	findModeNums(root, tmpMap, k);
+	map<int, int>::iterator it = tmpMap.begin();
+	while (it != tmpMap.end())
+	{
+		if (it->second == k)
+		{
+			res.push_back(it->first);
+		}
+		it++;
+	}
+	return res;
+}
+
+void Function::findModeNums(TreeNode* root, map<int, int> & tmpMap, int & k)
+{
+	if (root == NULL)
+	{
+		return;
+	}
+	findModeNums(root->left, tmpMap, k);
+	tmpMap[root->val]++;
+	k = max(k, tmpMap[root->val]);
+	findModeNums(root->right, tmpMap, k);
+}
+
+string Function::convertToBase7(int num)
+{
+	bool pos = true;
+	if (num == 0)
+	{
+		return "0";
+	}
+	else if (num < 0)
+	{
+		pos = false;
+		num = -num;
+	}
+	string s = "";
+	int t = 0;
+	char buffer[2];
+	while (num > 0)
+	{
+		t = num % 7;
+		sprintf(buffer, "%d", t);
+		s = buffer + s;
+		num /= 7;
+	}
+	if (!pos)
+	{
+		s = "-" + s;
+	}
+	return s;
+}
+
+vector<string> Function::findRelativeRanks(vector<int>& nums)
+{
+	vector<int> tmpVec = nums;
+	vector<string> res;
+	sort(tmpVec.begin(), tmpVec.end());
+	map<int, string> tmpMap;
+	int len = tmpVec.size();
+	for (int i = 0; i < len; i++)
+	{
+		if (i == len - 1)
+		{
+			tmpMap[tmpVec[i]] = "Gold Medal";
+		}
+		else if (i == len - 2)
+		{
+			tmpMap[tmpVec[i]] = "Silver Medal";
+		}
+		else if (i == len -3)
+		{
+			tmpMap[tmpVec[i]] = "Bronze Medal";
+		}
+		else
+		{
+			char buffer[10];
+			sprintf(buffer, "%d", len - i);
+			tmpMap[tmpVec[i]] = buffer;
+		}
+	}
+	for (int i = 0; i < len; i++)
+	{
+		res.push_back(tmpMap[nums[i]]);
+	}
+	return res;
+}
+
+bool Function::checkPerfectNumver(int num)
+{
+	if (num < 2)
+	{
+		return false;
+	}
+	int sum = 0, mid = sqrt(double(num));
+	vector<int> tmpVec;
+	tmpVec.push_back(1);
+	for (int i = 2; i < mid; i++)
+	{
+		if (num % i == 0)
+		{
+			tmpVec.push_back(i);
+			tmpVec.push_back(num / i);
+		}
+	}
+	if (num % mid == 0)
+	{
+		if (num / mid == mid)
+		{
+			tmpVec.push_back(mid);
+		}
+		else
+		{
+			tmpVec.push_back(mid);
+			tmpVec.push_back(num / mid);
+		}
+	}
+	for (int i = 0; i < tmpVec.size(); i++)
+	{
+		sum += tmpVec[i];
+	}
+	if (sum == num)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool Function::detectCapitaUse(string word)
+{
+	if ("" == word)
+	{
+		return true;
+	}
+	bool isUpperFirst = isupper(word[0]);
+	bool tmp;
+	for (int i = 1; i < word.length(); i++)
+	{
+		if (1 == i)
+		{
+			tmp = isupper(word[i]);
+		}
+		else
+		{
+			tmp = isupper(word[i-1]);   
+		}
+		if (isUpperFirst)
+		{
+			if ((tmp && islower(word[i])) || (!tmp && isupper(word[i])))
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if (isupper(word[i]))
+			{
+				return false;
+			}
+		}
+	}
+	return true;
 }

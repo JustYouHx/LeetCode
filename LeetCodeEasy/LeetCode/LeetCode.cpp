@@ -31,7 +31,7 @@ int _tmain(int argc, _TCHAR* argv[])
 //	strs2.push_back(5);
 //	strs2.push_back(1);
 
-	int i = 10;
+	int i = 28;
 
 	string s1 = "abcabcabcabc";
 	string s2 = "812";
@@ -84,8 +84,12 @@ int _tmain(int argc, _TCHAR* argv[])
 //	bool r = Function::repeatedSubstringPattern(s1);
 //	int r = Function::findRadius(strs, strs2);
 //	int r = Function::largestPalindrome(i);
-	nums = Function::constructRectangle(i);
-//	cout << "\n结果：" << r << endl;
+//	nums = Function::constructRectangle(i);
+//	string r = Function::convertToBase7(i);
+//	bool r = Function::checkPerfectNumver(i);
+	bool r = Function::detectCapitaUse(x);
+
+	cout << "\n结果：" << r << endl;
 //	cout << strs2[0] << endl;
 //	cout << strs2[1] << endl;
 //	cout << strs2[2] << endl;
@@ -94,10 +98,10 @@ int _tmain(int argc, _TCHAR* argv[])
 //	cout << strs[5] << endl;
 //	cout << strs[6] << endl;
 
-	for (int j = 0; j < nums.size(); j++)
-	{
-		cout << nums[j] << endl;
-	}
+	//for (int j = 0; j < nums.size(); j++)
+	//{
+	//	cout << nums[j] << endl;
+	//}
 
 	system("pause");
 	return 0;
